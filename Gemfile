@@ -36,6 +36,9 @@ group :development, :test do
 
  	# rspec-rails is a testing framework for Rails 3.x and 4.x.
   	gem 'rspec-rails', '~> 3.3.3'
+
+  	# Provides a framework and DSL for defining and using factories - less error-prone, more explicit, and all-around easier to work with than fixtures.
+  	gem 'factory_girl'
   
   	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
   	gem 'byebug'
