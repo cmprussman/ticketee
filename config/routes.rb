@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "session#create"
 
+  resources :users
   resources :projects
   resources :purchases
   root 'projects#index'
