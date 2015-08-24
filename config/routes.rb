@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   post "/login", to: "session#create"
 
   resources :users
-  resources :projects
+  resources :projects do
+    resources :tickets
+  end
   resources :purchases
   root 'projects#index'
   

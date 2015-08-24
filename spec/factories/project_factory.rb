@@ -2,6 +2,7 @@ require 'rails_helper'
 
 FactoryGirl.define do
 	factory :project do
-		name "Example project"
+		name "Test Project"
+		description "Test description"
 	end
 end
