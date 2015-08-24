@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "/login", to: "sessions#new"
+  post "/login", to: "session#create"
+
   resources :projects
   resources :purchases
   root 'projects#index'
