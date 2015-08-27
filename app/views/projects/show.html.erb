@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= @project.name %></h2>
+<p><%= simple_format(@project.description) %></p>
+
 <ul id="tickets">
 	<% @project.tickets.each do |ticket| %>
 		<li>
