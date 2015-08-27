@@ -4,11 +4,14 @@
 <p><%= simple_format(@project.description) %></p>
 
 <ul id="tickets">
-	<% @tickets.each do |ticket| %>
+	<% @project.tickets.each do |ticket| %>
 		<li>
 			<%= link_to ticket.title, project_ticket_path(@project, ticket) %> (#<%= ticket.id %>)<br>
 			<span class="author">Added by <%= ticket.user.username %></span><br>
 			<%= link_to "Edit Ticket", edit_project_ticket_path(@project, ticket) %>
+=======
+			<%= link_to "Edit", edit_project_ticket_path(@project, ticket) %> |
+			<%= link_to "Delete", project_ticket_path(@project, ticket), method: :delete, data: { confirm: "Are you sure?" } %>
 		</li>
 	<% end %>
 </ul>
