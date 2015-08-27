@@ -31,7 +31,7 @@ feature "creating tickets" do
 		click_button "Submit"
 
 		expect(page).to have_content("Error creating ticket.")
-		expect(page).to have_content("Title cannot be empty")
-		expect(page).to have_content("Description cannot be empty")
+		expect(page).to have_content("Title can't be blank")
+		expect(page).to have_content("Description can't be blank")
 	end
 end

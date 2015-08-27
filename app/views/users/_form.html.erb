@@ -1,9 +1,9 @@
 <%= form_for @user do |f| %>
 		<% if @user.errors.any? %>
 		<div id="error_explanation">
-			<p>Check your input!</p>
+			<p id="notice"><%= notice %></p>
 			<ul>
-				<% @tickets.errors.full_messages.each do |msg| %>
+				<% @user.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>
@@ -11,13 +11,15 @@
 	<% end %>
 
 	<p>
+		<%= f.label :username %><br>
+		<%= f.text_field :username %>
+	</p>
+
+	<p>
 		<%= f.label :email %><br>
 		<%= f.text_field :email %>
 	</p>
-	<p>
-		<%= f.label :username, "Username" %><br>
-		<%= f.text_field :username %>
-	</p>
+	
 	<p>
 		<%= f.label :password %><br>
 		<%= f.password_field :password %>

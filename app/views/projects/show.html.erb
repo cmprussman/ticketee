@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <ul id="tickets">
-	<% @projects.tickets.each do |ticket| %>
+	<% @tickets.each do |ticket| %>
 		<li>
-			#<%= ticket.id %> - 
-			<%= link_to ticket.title, [@project, ticket] %>
+			<%= link_to ticket.title, project_ticket_path(@project, ticket) %> (#<%= ticket.id %>)<br>
+			<%= link_to "Edit Ticket", edit_project_ticket_path(@project, ticket) %>
 		</li>
 	<% end %>
 </ul>
 
-<%= link_to "New Ticket", new_project_ticket_path(@project) %> | 
-<%= link_to "Edit Ticket", edit_project_ticket_path(@project, @ticket) %>
+<%= link_to "New Ticket", new_project_ticket_path(@project) %>

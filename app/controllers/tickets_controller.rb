@@ -12,8 +12,8 @@ class TicketsController < ApplicationController
 			flash[:notice] = "Ticket created."
 			redirect_to [@project, @ticket]
 		else
-			flash[:alert] = "Error creating ticket."
-			render "new"
+			flash[:notice] = "Error creating ticket."
+			render :new
 		end
 	end
 
@@ -26,9 +26,9 @@ class TicketsController < ApplicationController
 
 			redirect_to [@project, @ticket]
 		else
-			flash[:alert] = "Error updating ticket."
+			flash[:notice] = "Error updating ticket."
 
-			render action: "edit"
+			render :edit
 		end
 	end
 

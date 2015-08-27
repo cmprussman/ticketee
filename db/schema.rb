@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804015416) do
+ActiveRecord::Schema.define(version: 20150826231806) do
 
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at",                null: false
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20150804015416) do
     t.integer  "cost",       limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "project_id",  limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["project_id"], name: "index_tickets_on_project_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",        limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -2,7 +2,7 @@ class CreateTickets < ActiveRecord::Migration
 	def change
 		create_table :tickets do |t|
 			t.string :title
-			t.description :description
+			t.text :description
 			t.references :project, index: true
 
 			t.timestamps
