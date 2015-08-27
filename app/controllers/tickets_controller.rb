@@ -1,6 +1,10 @@
 class TicketsController < ApplicationController
 	before_action :set_project
 	before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+	before_action :require_login, except: [:show, :index]
+
+	helper_method :require_login
+	helper_method :current_user
 
 	def new
 		@ticket = @project.tickets.build
@@ -8,6 +12,8 @@ class TicketsController < ApplicationController
 
 	def create
 		@ticket = @project.tickets.build(ticket_params)
+		@ticket.user = current_user
+
 		if @ticket.save
 			flash[:notice] = "Ticket created."
 			redirect_to [@project, @ticket]
@@ -50,5 +56,17 @@ class TicketsController < ApplicationController
 
 		def set_ticket
 			@ticket = @project.tickets.find(params[:id])
+			@ticket.user = current_user
+		end
+
+		def require_login
+			if current_user.nil?
+				flash[:error] = "Please login."
+				redirect_to login_url
+			end
+		end
+
+		def current_user
+			@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		end
 end

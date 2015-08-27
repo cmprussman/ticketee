@@ -7,6 +7,7 @@
 	<% @tickets.each do |ticket| %>
 		<li>
 			<%= link_to ticket.title, project_ticket_path(@project, ticket) %> (#<%= ticket.id %>)<br>
+			<span class="author">Added by <%= ticket.user.username %></span><br>
 			<%= link_to "Edit Ticket", edit_project_ticket_path(@project, ticket) %>
 		</li>
 	<% end %>

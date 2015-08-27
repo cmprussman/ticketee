@@ -3,11 +3,20 @@ require 'spec_helper'
 
 feature "creating tickets" do
 	before do
-		FactoryGirl.create(:project)
+		project = FactoryGirl.create(:project)
+		user = FactoryGirl.create(:user)
 
+		# Click "New Ticket", and must show "login" message when ther is no session.
 		visit "/"
-		click_link "Test Project"
+		click_link project.name
 		click_link "New Ticket"
+
+		expect(page).to have_content("Please login.")
+
+		# Login in order to create a ticket.
+		fill_in "Username", with: user.username
+		fill_in "Password", with: user.password
+		click_button "Login"
 	end
 
 	scenario "success" do
@@ -16,6 +25,9 @@ feature "creating tickets" do
 		click_button "Submit"
 
 		expect(page).to have_content("Ticket created.")
+		within ".author" do
+			expect(page).to have_content("Added by #{user.username}")
+		end
 	end
 
 	scenario "description has less than 10 characters" do
