@@ -2,5 +2,6 @@
 
 <div id="ticket">
 	<h3><%= @ticket.title %></h3>
+	<span class="author">Added by <%= @ticket.user.username %></span>
 	<%= simple_format(@ticket.description) %>
 </div>

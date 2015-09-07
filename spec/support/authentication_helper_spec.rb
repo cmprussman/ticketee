@@ -1,7 +1,7 @@
-module AuthenticationHelpers
+module AuthenticationHelper
 	def login_as!(user)
 		visit "/login"
-		fill_in "Username", with: user.name
+		fill_in "Username", with: user.username
 		fill_in "Password", with: user.password
 		click_button "Login"
 
@@ -10,5 +10,5 @@ module AuthenticationHelpers
 end
 
 RSpec.configure do |c|
-	c.include AuthenticationHelpers, type: :feature
+	c.include AuthenticationHelper, type: :feature
 end

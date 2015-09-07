@@ -9,7 +9,7 @@ feature "signing in" do
 		click_link "Login"
 		fill_in "login_username", with: user.username
 		fill_in "login_password", with: user.password
-		click_button "Submit"
+		click_button "Login"
 
 		expect(page).to have_content("Hi, #{user.username}!")
 	end
