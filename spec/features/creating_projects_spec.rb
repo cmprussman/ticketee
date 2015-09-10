@@ -2,6 +2,9 @@ require 'rails_helper'
 require 'spec_helper'
 
 feature 'Creating Projects' do 
+	before do
+		login_as!(FactoryGirl.create(:admin_user))
+	end
 	scenario 'can create project' do
 		visit '/'
 		click_link 'New Project'
