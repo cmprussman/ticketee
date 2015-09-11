@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   include SessionManagement
 
+  before_action :authorize_admin!, except: [:index, :show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -65,6 +66,15 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def authorize_admin!
+      require_login
+
+      unless current_user.admin?
+        flash[:notice] = "Admin account required."
+        redirect_to root_path
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
