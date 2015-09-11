@@ -3,10 +3,17 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
 
   resources :users
+
   resources :projects do
     resources :tickets
   end
+
   resources :purchases
+
+  namespace :admin do
+    resources :users
+  end
+  
   root 'projects#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
